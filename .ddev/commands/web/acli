@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: Acquia CLI
+## Usage: acli [flags] [args]
+## Example: "ddev acli"
+## `ddev acli auth:login -k API_KEY -s API_SECRET` 
+
+acli "$@"

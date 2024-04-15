@@ -1,0 +1,42 @@
+version: '3.6'
+services:
+  chrome:
+    hostname: chrome
+    container_name: ddev-${DDEV_SITENAME}-chrome
+    image:  isholgueras/chrome-headless:latest
+    restart: unless-stopped
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    external_links:
+      - ddev-router:my-project.ddev.site
+    environment:
+      COLUMNS: '80'
+      LINES: '24'
+      DDEV_PHP_VERSION: '8.1'
+      DDEV_PRIMARY_URL: https://my-project.ddev.site
+      DDEV_PROJECT: my-project
+      DDEV_PROJECT_TYPE: drupal10
+      DDEV_ROUTER_HTTPS_PORT: '443'
+      DDEV_ROUTER_HTTP_PORT: '8080'
+      DDEV_SITENAME: my-project
+      DDEV_TLD: ddev.site
+      DDEV_WEBSERVER_TYPE: apache-fpm
+      DDEV_XDEBUG_ENABLED: false
+      DEPLOY_NAME: local
+      DOCKER_IP: 127.0.0.1
+      DDEV_DOCROOT: docroot
+      DRUSH_OPTIONS_URI: my-project.ddev.site
+      HOST_DOCKER_INTERNAL_IP: ''
+      HTTPS_EXPOSE: 443:80,8026:8025
+      HTTP_EXPOSE: 8080:80,8025:8025
+      IS_DDEV_PROJECT: true
+      SSH_AUTH_SOCK: /home/.ssh-agent/socket
+      TZ: ''
+      VIRTUAL_HOST: my-project.ddev.site
+    shm_size: 2048M
+    cap_add:
+      - SYS_ADMIN
+  web:
+    links:
+      - chrome:$DDEV_HOSTNAME
