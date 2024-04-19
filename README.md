@@ -1,6 +1,8 @@
 # Drupal Local Development
 This solution was found because the traditional Docker and DDEV setup was too slow for Local Development. This solution increases the speed of Drupal Local Development environment up to 10 times by using WSL2 in Windows. With this solution, Admin pages are opened within 3-4 seconds at the latest.
 
+You can install the [extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) on Visual Studio Code and create a more effective working environment.
+
 - Delete existing docker Desktop and DDEV
 - If you already have a working build, you don't need to do anything in this step. Open WSL2. You can open PowerShell and type wsl to check if it is on.
 - Download the [.wslconfig](.wslconfig) file and move it to C:\Users\USER. You can update this file according to your own computer specifications. It works most efficiently with 2GB RAM. Try to give a minimum of 2GB RAM.
@@ -23,7 +25,7 @@ This solution was found because the traditional Docker and DDEV setup was too sl
 - Open this project in Ubuntu with VS Code or whatever editor you are using.
 - Put the [docroot](docroot) folder into the main project. There is only ***[settings.local.php](docroot/sites/default/settings.local.php)*** file in this directory. Thanks to the codes I added at the end of the file, you can connect to remote SOLR servers.
 - When adding a terminal with + in the terminal tab in VS Code, open the *Ubuntu-22.04 (WSL)* one or you can open it by typing wsl in the terminal.
-- Enter the command ```sudo ln -s /mnt/c/users/USER/.ssh /home/USER``` to connect SSH files on Windows to Ubuntu.
+- Enter the command ```sudo cp /mnt/c/users/USER/.ssh/* /home/USER/.ssh``` to copy SSH files on Windows to Ubuntu.
 - Mutagen reduced the performance of my computer a lot. So I had to turn off Mutagen. Turn off Mutagen by entering the following command.
   - ```ddev mutagen reset && ddev config global --performance-mode=none && ddev config --performance-mode=none```
 - Enter the command ```sed -i 's/^M$//' .ddev/commands/web/blt && sed -i 's/^M$//' .ddev/commands/web/acli``` to fix the line endings.
