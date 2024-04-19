@@ -15,9 +15,12 @@ performance_mode: none
 hooks:
     post-start:
         - exec-host: ddev auth ssh
-        - exec: ln -sf /var/www/html/vendor/acquia/blt/bin/blt /usr/bin/blt
-        - exec: echo "Install Acquia CLI" && curl -OL https://github.com/acquia/cli/releases/latest/download/acli.phar && chmod +x acli.phar && sudo mv acli.phar /usr/local/bin/acli
-        - exec: sed -i 's/^M$//' .ddev/commands/web/blt && sed -i 's/^M$//' .ddev/commands/web/acli
+        - exec: ln -sf /var/www/html/vendor/bin/* /usr/local/bin/
+        - exec: |
+            printf "\033[0;34mInstall Acquia CLI\033[0m \n"
+            curl -OL https://github.com/acquia/cli/releases/latest/download/acli.phar
+            chmod +x acli.phar
+            sudo mv acli.phar /usr/local/bin/acli
 use_dns_when_possible: true
 composer_version: '2'
 web_environment:

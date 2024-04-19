@@ -26,14 +26,15 @@ This solution was found because the traditional Docker and DDEV setup was too sl
 - Enter the command ```sudo ln -s /mnt/c/users/USER/.ssh /home/USER``` to connect SSH files on Windows to Ubuntu.
 - Mutagen reduced the performance of my computer a lot. So I had to turn off Mutagen. Turn off Mutagen by entering the following command.
   - ```ddev mutagen reset && ddev config global --performance-mode=none && ddev config --performance-mode=none```
+- Enter the command ```sed -i 's/^M$//' .ddev/commands/web/blt && sed -i 's/^M$//' .ddev/commands/web/acli``` to fix the line endings.
 - After this step, it proceeds like a standard DDEV installation.
 1) ```ddev start```
-2) ```ddev composer install```
-3) ```ddev auth ssh```
-4) ```ddev ssh```
-5) ```sudo blt setup```
-6) ```exit```
-7) ```sudo chmod 777 docroot/sites/default/files/*```
+1) ```ddev composer install```
+1) ```ddev auth ssh```
+1) ```ddev ssh```
+1) ```sudo blt setup```
+1) ```exit```
+1) ```sudo chmod 777 docroot/sites/default/files/*```
 
 ## Known Issues
 - [ ] There is a database import problem in the ACLI command I added to the system. ```ddev acli pull:database```
