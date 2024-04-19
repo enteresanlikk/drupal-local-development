@@ -38,6 +38,12 @@ You can install the [extension](https://marketplace.visualstudio.com/items?itemN
 1) ```exit```
 1) ```sudo chmod 777 docroot/sites/default/files/*```
 
+## Additional Informations
+- To open cmd in the relevant location, write ```cmd``` where the folder directory information is written, if you want to open WSL you can write ```wsl```.
+- You can write ```wsl --shutdown``` to close WSL2.
+- If we move the tar.gz file we get while importing the database into the WSL system and open it with the command ```tar -xf filename.tar.gz```, we will be 10 times faster.
+- We can use ```ddev import-db --file=./filename.sql && ddev drush updb -y -vvvv && ddev drush uli``` command sequence for database import.
+
 ## Known Issues
 - [ ] There is a database import problem in the ACLI command I added to the system. ```ddev acli pull:database```
 
