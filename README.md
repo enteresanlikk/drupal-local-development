@@ -15,6 +15,7 @@ You can install the [extension](https://marketplace.visualstudio.com/items?itemN
 - Enter the command ```wsl --install Ubuntu-22.04``` to install Ubuntu 22.04.
 - You will be prompted for username and password. Enter this information and continue. Remember the password because you will need it in the future.
 - On the Ubuntu system, enter the command ```sudo apt update && sudo apt -y upgrade```. It will ask you for a password and enter the password you set above.
+- Enter the command ```sudo mkdir /home/USER/.ssh && sudo cp /mnt/c/users/USER/.ssh/* /home/USER/.ssh``` to copy SSH files on Windows to Ubuntu.
 - When the installation is complete, type ```exit``` and exit.
 - Enter the following commands via PowerShell (for ddev installation);
   - ```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;```
@@ -27,18 +28,17 @@ You can install the [extension](https://marketplace.visualstudio.com/items?itemN
 - Open this project in Ubuntu with VS Code or whatever editor you are using.
 - Put the [docroot](docroot) folder into the main project. There is only ***[settings.local.php](docroot/sites/default/settings.local.php)*** file in this directory. Thanks to the codes I added at the end of the file, you can connect to remote SOLR servers.
 - When adding a terminal with + in the terminal tab in VS Code, open the *Ubuntu-22.04 (WSL)* one or you can open it by typing wsl in the terminal.
-- Enter the command ```sudo mkdir /home/USER/.ssh && sudo cp /mnt/c/users/USER/.ssh/* /home/USER/.ssh``` to copy SSH files on Windows to Ubuntu.
 - Mutagen reduced the performance of my computer a lot. So I had to turn off Mutagen. Turn off Mutagen by entering the following command.
   - ```ddev mutagen reset && ddev config global --performance-mode=none && ddev config --performance-mode=none```
 - Enter the command ```sed -i 's/^M$//' .ddev/commands/web/blt && sed -i 's/^M$//' .ddev/commands/web/acli``` to fix the line endings.
 - After this step, it proceeds like a standard DDEV installation.
+1) ```sudo chmod 777 docroot/sites/default/files/*```
 1) ```ddev start```
 1) ```ddev composer install```
 1) ```ddev auth ssh```
 1) ```ddev ssh```
 1) ```sudo blt setup```
 1) ```exit```
-1) ```sudo chmod 777 docroot/sites/default/files/*```
 
 ## Additional Informations
 - To open cmd in the relevant location, write ```cmd``` where the folder directory information is written, if you want to open WSL you can write ```wsl```.
